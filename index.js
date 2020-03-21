@@ -30,15 +30,19 @@ const removeIfExists = (urlPath) => {
 
 const downloadImage = (uri, filename, callback) => {
     return new Promise((resolve, reject) => {
+        //we create the directory
         createDir(path.dirname(filename))
         .then(
+            //we request the HEAD of the url
             request.head(uri, (error, response) => {
                 if (error) {
                     reject(error);
                 } else {
                     console.log('content-type:', response.headers['content-type']);
                     console.log('content-length:', response.headers['content-length']);
+                    //we create the file with the filename of the image
                     let file =  fs.createWriteStream(path.resolve(filename));
+                    //we download de image and pipe it to the file
                     var stream = request(uri).pipe(file);
                     stream.on('finish', () => {
                         resolve("image downloaded!");
@@ -60,6 +64,7 @@ const createDir = (urlPath) => {
     // we don't put the reject, because this function always resolves OK even the path doesn't exist
     return new Promise((resolve, reject) => {
         urlPath = path.resolve(urlPath);
+        //we create the directory
         fs.mkdir(urlPath, (error) => {
             if (error) {
                 reject(error);
@@ -72,6 +77,7 @@ const createDir = (urlPath) => {
 
 const downloadJSON = () => {
     return new Promise((resolve, reject) => {
+        //we download the JSON request
         request(imageUrl, (error, response, body) => {
             if (!error && response.statusCode === 200) {
                 //if request OK, parse JSON first object (contains image)
