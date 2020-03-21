@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-wallpaper-downloader",
+  "version": "1.0.0",
+  "description": "download the bing daily image",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "smarciel",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
+  }
+}
