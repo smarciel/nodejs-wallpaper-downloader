@@ -120,4 +120,3 @@ function downloadAndSave(argPath) {
 module.exports = {
     downloadAndSave
 };
-
